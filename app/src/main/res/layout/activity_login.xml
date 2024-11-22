@@ -1,0 +1,90 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="24dp"
+    android:background="@drawable/background_image">
+
+    <!-- Logo de l'application -->
+
+    <!-- Titre de l'application -->
+
+    <!-- Sous-titre de l'application -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Explorez vos films et séries préférés"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:layout_marginBottom="24dp" />
+
+    <!-- Champ email -->
+    <EditText
+        android:id="@+id/emailField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="cinescope@exemple.com"
+        android:inputType="textEmailAddress"
+        android:background="@drawable/input_field_background"
+        android:padding="12dp"
+        android:layout_marginBottom="12dp"
+        android:textColor="@color/white"
+        android:hintTextColor="@color/white" />
+
+    <!-- Champ mot de passe -->
+    <EditText
+        android:id="@+id/passwordField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="mot de passe"
+        android:inputType="textPassword"
+        android:background="@drawable/input_field_background"
+        android:padding="12dp"
+        android:layout_marginBottom="16dp"
+        android:textColor="@color/white"
+        android:hintTextColor="@color/white" />
+
+    <!-- Bouton Connexion -->
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Connexion"
+        android:backgroundTint="@color/black"
+        android:textColor="@color/white"
+        android:layout_marginBottom="12dp" />
+
+    <!-- Texte mot de passe oublié -->
+    <TextView
+        android:id="@+id/forgotPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="mot de passe oublié ?"
+        android:textSize="14sp"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Texte pour l'inscription -->
+    <TextView
+        android:id="@+id/registerText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Vous n'avez pas de compte ?"
+        android:textSize="14sp"
+        android:textColor="@color/white"
+        android:gravity="center" />
+
+    <TextView
+        android:id="@+id/registerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Inscrivez-vous"
+        android:textSize="14sp"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:layout_marginTop="4dp" />
+</LinearLayout>
