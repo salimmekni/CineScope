@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.example.cinescope"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.cinescope"
@@ -36,8 +36,12 @@ android {
     }
     buildFeatures {
         compose = true
+        viewBinding = true
+
     }
+
 }
+
 
 dependencies {
     implementation(libs.androidx.core.ktx)

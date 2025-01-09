@@ -7,10 +7,6 @@
     android:padding="24dp"
     android:background="@drawable/background_image">
 
-    <!-- Logo de l'application -->
-
-    <!-- Titre de l'application -->
-
     <!-- Sous-titre de l'application -->
     <TextView
         android:layout_width="wrap_content"
@@ -32,7 +28,7 @@
         android:padding="12dp"
         android:layout_marginBottom="12dp"
         android:textColor="@color/white"
-        android:hintTextColor="@color/white" />
+        android:textColorHint="@color/gray_light" />
 
     <!-- Champ mot de passe -->
     <EditText
@@ -45,7 +41,7 @@
         android:padding="12dp"
         android:layout_marginBottom="16dp"
         android:textColor="@color/white"
-        android:hintTextColor="@color/white" />
+        android:textColorHint="@color/gray_light" />
 
     <!-- Bouton Connexion -->
     <Button
@@ -62,7 +58,7 @@
         android:id="@+id/forgotPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="mot de passe oublié ?"
+        android:text="Mot de passe oublié ?"
         android:textSize="14sp"
         android:textColor="@color/white"
         android:gravity="center"

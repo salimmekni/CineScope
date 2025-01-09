@@ -1,5 +1,5 @@
 package com.example.cinescope
-
+import com.example.cinescope.RegistrationActivity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
