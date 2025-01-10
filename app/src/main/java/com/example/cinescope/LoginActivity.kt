@@ -1,5 +1,5 @@
 package com.example.cinescope
-import com.example.cinescope.RegistrationActivity
+
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -39,7 +39,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.registerButton.setOnClickListener {
-            startActivity(Intent(this, RegisterActivity::class.java))
+            startActivity(Intent(this, RegistrationActivity::class.java))
         }
     }
 }
