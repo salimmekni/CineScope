@@ -27,9 +27,8 @@
 
         <!-- Activités secondaires -->
         <activity android:name=".MainActivity" android:exported="true" />
-        <activity android:name=".RegistrationActivity" android:exported="true" />
+        <activity android:name=".RegisterActivity" android:exported="true" />
         <activity android:name=".HomeActivity" android:exported="true" />
-        <activity android:name=".MovieDetailsActivity" />
 
     </application>
 </manifest>

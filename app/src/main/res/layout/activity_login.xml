@@ -27,7 +27,7 @@
         android:background="@drawable/input_field_background"
         android:padding="12dp"
         android:layout_marginBottom="12dp"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textColorHint="@color/gray_light" />
 
     <!-- Champ mot de passe -->
@@ -40,7 +40,7 @@
         android:background="@drawable/input_field_background"
         android:padding="12dp"
         android:layout_marginBottom="16dp"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textColorHint="@color/gray_light" />
 
     <!-- Bouton Connexion -->

@@ -12,6 +12,6 @@ buildscript {
             google()
             mavenCentral()
         }
-        classpath("com.google.gms:google-services:4.3.10")
+        classpath ("com.google.gms:google-services:4.4.0")
     }
 }
