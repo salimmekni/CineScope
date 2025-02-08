@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.kotlin.compose) apply false
 
 }
+
 buildscript {
     dependencies {
         repositories {

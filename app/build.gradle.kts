@@ -3,7 +3,10 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("com.google.gms.google-services") // Plugin Google Services pour Firebase
     id("org.jetbrains.kotlin.kapt") // Pour le support de Kapt si nécessaire
+    id("org.jetbrains.kotlin.plugin.compose")
 }
+
+
 
 android {
     namespace = "com.example.cinescope"
@@ -44,7 +47,10 @@ android {
     }
 }
 
+
 dependencies {
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+
     // Dépendances AndroidX
     implementation("androidx.core:core-ktx:1.10.1")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
@@ -54,6 +60,7 @@ dependencies {
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
+    implementation("androidx.appcompat:appcompat:1.6.1")
 
     // Retrofit pour les appels réseau
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
@@ -61,11 +68,9 @@ dependencies {
 
     // Glide pour le chargement des images
     implementation("com.github.bumptech.glide:glide:4.12.0")
+    implementation(libs.firebase.auth.ktx)
     kapt("com.github.bumptech.glide:compiler:4.12.0")
 
-    // Firebase
-    implementation("com.google.firebase:firebase-auth-ktx:21.4.3")
-    implementation("com.google.firebase:firebase-firestore-ktx:24.6.2")
 
     // Dépendances de test
     testImplementation("junit:junit:4.13.2")
