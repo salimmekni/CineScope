@@ -1,7 +1,10 @@
 package com.example.cinescope
 
+import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
+import android.view.inputmethod.EditorInfo
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cinescope.api.OmdbResponse
@@ -15,6 +18,7 @@ import retrofit2.Response
 class SearchActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySearchBinding
+    private val apiKey = "388bae6e" // 🔴A éviter en dur, mieux vaut le stocker en `local.properties`
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,67 +29,80 @@ class SearchActivity : AppCompatActivity() {
 
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
 
-        // Écouteur sur l'input pour détecter une recherche
-        binding.searchInput.setOnEditorActionListener { _, _, _ ->
-            val query = binding.searchInput.text.toString()
-            if (query.isNotEmpty()) {
-                searchMovies(query)
+        // Détection de la recherche quand l'utilisateur valide l'entrée
+        binding.searchInput.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                val query = binding.searchInput.text.toString().trim()
+                if (query.isNotEmpty()) {
+                    searchMovies(query)
+                } else {
+                    Toast.makeText(this, "Veuillez entrer un titre de film", Toast.LENGTH_SHORT).show()
+                }
             }
             true
         }
     }
 
     private fun searchMovies(query: String) {
-        val apiKey = "388bae6e" // Remplace par ta clé API OMDb
-        val call = RetrofitClient.apiService.searchMovies(query, apiKey)
+        binding.progressBar.visibility = android.view.View.VISIBLE // 🔵 Afficher le chargement
 
+        val call = RetrofitClient.apiService.searchMovies(query, apiKey)
         call.enqueue(object : Callback<OmdbResponse> {
             override fun onResponse(call: Call<OmdbResponse>, response: Response<OmdbResponse>) {
+                binding.progressBar.visibility = android.view.View.GONE // 🔵 Cacher le chargement
+
                 if (response.isSuccessful) {
                     val movies = response.body()?.movies ?: emptyList()
-                    binding.recyclerView.adapter = MovieAdapter(movies) { selectedMovie ->
-                        val intent = Intent(this@SearchActivity, MovieDetailsActivity::class.java)
-                        intent.putExtra("MOVIE_ID", selectedMovie.imdbID)
-                        startActivity(intent)
+                    if (movies.isNotEmpty()) {
+                        binding.recyclerView.adapter = MovieAdapter(movies) { selectedMovie ->
+                            val intent = Intent(this@SearchActivity, MovieDetailsActivity::class.java).apply {
+                                putExtra("MOVIE_ID", selectedMovie.imdbID)
+                            }
+                            startActivity(intent, ActivityOptions.makeCustomAnimation(this@SearchActivity, android.R.anim.fade_in, android.R.anim.fade_out).toBundle())
+                        }
+                    } else {
+                        Toast.makeText(this@SearchActivity, "Aucun film trouvé", Toast.LENGTH_SHORT).show()
                     }
+                } else {
+                    Toast.makeText(this@SearchActivity, "Erreur serveur: ${response.message()}", Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onFailure(call: Call<OmdbResponse>, t: Throwable) {
-                println("Erreur: ${t.message}")
+                binding.progressBar.visibility = android.view.View.GONE // 🔵 Cacher le chargement
+                Toast.makeText(this@SearchActivity, "Erreur de connexion: ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })
     }
 
     private fun setupBottomNavigation() {
         val bottomNavigationView: BottomNavigationView = binding.bottomNavigationView
-
-        // Marque la section actuelle comme sélectionnée
         bottomNavigationView.selectedItemId = R.id.nav_search
 
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> {
-                    startActivity(Intent(this, HomeActivity::class.java))
-                    overridePendingTransition(0, 0)
-                    finish()
-                    return@setOnItemSelectedListener true
+                    navigateTo(HomeActivity::class.java)
+                    true // Retourne `true`
                 }
-                R.id.nav_search -> return@setOnItemSelectedListener true
+                R.id.nav_search -> true //Retourne `true`
                 R.id.nav_favorites -> {
-                    startActivity(Intent(this, FavoritesActivity::class.java))
-                    overridePendingTransition(0, 0)
-                    finish()
-                    return@setOnItemSelectedListener true
+                    navigateTo(FavoritesActivity::class.java)
+                    true
                 }
                 R.id.nav_profile -> {
-                    startActivity(Intent(this, ProfileActivity::class.java))
-                    overridePendingTransition(0, 0)
-                    finish()
-                    return@setOnItemSelectedListener true
+                    navigateTo(ProfileActivity::class.java)
+                    true
                 }
-                else -> false
+                else -> false // Retourne `false` pour un item inconnu
             }
         }
+
+    }
+
+    private fun navigateTo(destination: Class<*>) {
+        val intent = Intent(this, destination)
+        startActivity(intent, ActivityOptions.makeCustomAnimation(this, android.R.anim.fade_in, android.R.anim.fade_out).toBundle())
+        finish()
     }
 }

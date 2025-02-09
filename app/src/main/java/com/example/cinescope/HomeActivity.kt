@@ -28,7 +28,7 @@ class HomeActivity : AppCompatActivity() {
         binding.recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
         // Charger les films tendances
-        fetchMovies("Batman") // Change "Batman" selon ton choix
+        fetchMovies("Batman") //
 
         // Gérer le clic sur "Détails"
         binding.detailsButton.setOnClickListener {

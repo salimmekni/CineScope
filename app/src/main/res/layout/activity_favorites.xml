@@ -4,6 +4,17 @@
     android:layout_height="match_parent"
     android:background="@color/cinescopeback">
 
+    <!-- Message si aucun favori -->
+    <TextView
+        android:id="@+id/noFavoritesText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Aucun favori trouvé."
+        android:textSize="18sp"
+        android:textColor="@android:color/white"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
+
     <!-- Titre -->
     <TextView
         android:id="@+id/titleFavorites"
@@ -24,7 +35,10 @@
         android:layout_height="0dp"
         android:layout_above="@id/bottomNavigationView"
         android:layout_below="@id/titleFavorites"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp"
+        android:padding="8dp"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="2"/>
 
     <!-- Bottom Navigation fixé en bas -->
     <com.google.android.material.bottomnavigation.BottomNavigationView

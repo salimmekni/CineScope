@@ -1,12 +1,9 @@
-package com.example.cinescope
-
-import android.R
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.cinescope.api.Movie
 import com.example.cinescope.databinding.ItemMovieBinding
+import com.example.cinescope.api.Movie
 
 class MovieAdapter(private val movies: List<Movie>, private val onMovieClick: (Movie) -> Unit) :
     RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
@@ -15,11 +12,10 @@ class MovieAdapter(private val movies: List<Movie>, private val onMovieClick: (M
         RecyclerView.ViewHolder(binding.root) {
         fun bind(movie: Movie) {
             binding.movieTitle.text = movie.title
-            binding.movieYear.text = "Année : ${movie.year}"
-
+            binding.movieYear.text = "Année : ${movie.year}" // Ajout de l'année
             Glide.with(binding.root.context)
                 .load(movie.poster)
-                .placeholder(R.drawable.ic_menu_report_image)
+                .placeholder(android.R.drawable.ic_menu_report_image) // Placeholder si image absente
                 .into(binding.moviePoster)
 
             binding.root.setOnClickListener { onMovieClick(movie) }
