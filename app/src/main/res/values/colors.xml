@@ -9,6 +9,9 @@
     <color name="white">#FFFFFF</color>
     <color name="gray_light">#B0BEC5</color>
     <color name="primaryColor">#6200EE</color>
+    <color name="cinescope">#3D3760</color>
+    <color name="cinescopeback">#1A1347</color>
+    <color name="cineyellow">#D1AA36</color>
 
 
 </resources>

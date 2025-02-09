@@ -10,12 +10,12 @@ plugins {
 
 android {
     namespace = "com.example.cinescope"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.cinescope"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -50,6 +50,7 @@ android {
 
 dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation("com.google.android.material:material:1.9.0")
 
     // Dépendances AndroidX
     implementation("androidx.core:core-ktx:1.10.1")
@@ -69,10 +70,14 @@ dependencies {
     // Glide pour le chargement des images
     implementation("com.github.bumptech.glide:glide:4.12.0")
     implementation(libs.firebase.auth.ktx)
+    implementation(libs.androidx.recyclerview)
     kapt("com.github.bumptech.glide:compiler:4.12.0")
     implementation("com.google.firebase:firebase-auth:23.2.0") // Vérifie cette dépendance
 
-
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
+    implementation("com.github.bumptech.glide:glide:4.12.0")
 
     // Dépendances de test
     testImplementation("junit:junit:4.13.2")

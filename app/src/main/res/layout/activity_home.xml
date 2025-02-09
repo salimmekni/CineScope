@@ -1,13 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:background="@color/cinescopeback">
 
+    <!-- Image en haut -->
+    <ImageView
+        android:id="@+id/topMovieImage"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:scaleType="centerCrop"
+        android:layout_alignParentTop="true" />
+
+    <!-- Bouton détails aligné sur l'image -->
     <Button
-        android:id="@+id/logoutButton"
+        android:id="@+id/detailsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Déconnexion" />
-</LinearLayout>
+        android:text="Détails"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/topMovieImage"
+        android:layout_marginTop="-30dp"
+        android:backgroundTint="@color/cineyellow"
+        android:textColor="@color/white"/>
+
+    <!-- Barre de recherche -->
+    <ImageView
+        android:id="@+id/searchButton"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:padding="8dp"
+        android:contentDescription="Rechercher"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/detailsButton"
+        android:layout_margin="16dp"
+        android:background="?attr/selectableItemBackground"/>
+
+    <!-- Liste des films tendances -->
+    <TextView
+        android:id="@+id/trendingLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Films tendance"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:layout_below="@id/searchButton"
+        android:layout_marginTop="10dp"
+        android:paddingStart="16dp"/>
+
+    <!-- RecyclerView pour les films tendances -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@id/trendingLabel"
+        android:layout_marginTop="10dp"/>
+
+    <!-- Bottom Navigation en bas -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/cinescope"
+        app:itemIconTint="@color/white"
+        app:itemTextColor="@color/white"
+        app:menu="@menu/bottom_nav_menu"
+        app:labelVisibilityMode="labeled"/>
+</RelativeLayout>
